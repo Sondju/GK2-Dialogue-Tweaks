@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<AssemblyName>DialogueTweaks</AssemblyName>
+		<RootNamespace>DialogueTweaks</RootNamespace>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		
+		<!-- Не копируем зависимости в выходную папку -->
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+		
+		<!-- BepInEx -->
+		<DefineConstants>$(DefineConstants);BIE_API_V5</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<!-- Game Path -->
+		<GameDir>F:\GAMES\Graveyard Keeper 2</GameDir>
+		<!-- Managed Path -->
+		<ManagedDir>$(GameDir)\GraveyardKeeper2_Data\Managed</ManagedDir>
+		<!-- МО2 Instance Path -->
+		<MO2Dir>F:\_Game Profiles_\Graveyard Keeper 2\mods</MO2Dir>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<!-- BepInEx -->
+		<Reference Include="BepInEx">
+			<HintPath>$(GameDir)\BepInEx\core\BepInEx.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(GameDir)\BepInEx\core\0Harmony.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		
+		<!-- Game assemblies -->
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="LazyBearTechnology">
+			<HintPath>$(ManagedDir)\LazyBearTechnology.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Sirenix.Serialization">
+		  <HintPath>$(ManagedDir)\Sirenix.Serialization.dll</HintPath>
+		</Reference>
+		<Reference Include="Unity.TextMeshPro">
+		  <HintPath>F:\GAMES\Graveyard Keeper 2\GraveyardKeeper2_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+		</Reference>
+		
+		<!-- Unity -->
+		<Reference Include="UnityEngine">
+			<HintPath>$(ManagedDir)\UnityEngine.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+		  <HintPath>F:\GAMES\Graveyard Keeper 2\GraveyardKeeper2_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+		  <HintPath>$(ManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+		  <HintPath>$(ManagedDir)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+	<Target Name="CopyToGameFolder" AfterTargets="Build">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(MO2Dir)\Dialogue Tweaks\plugins\" SkipUnchangedFiles="true" />
+	</Target>
+</Project>

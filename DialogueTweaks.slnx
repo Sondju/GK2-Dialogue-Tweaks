@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DialogueTweaks\DialogueTweaks.csproj" />
+  <Project Path="DialogueTweaksFramework\DialogueTweaksFramework.csproj">
+    <BuildDependency Project="DialogueTweaks\DialogueTweaks.csproj" />
+  </Project>
+</Solution>
